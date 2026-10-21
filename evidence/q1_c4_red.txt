@@ -1,0 +1,22 @@
+test_add (test_calculator.TestCalculator.test_add) ... ok
+test_divide_by_zero_raises_value_error (test_calculator.TestCalculator.test_divide_by_zero_raises_value_error) ... ERROR
+test_divide_returns_float (test_calculator.TestCalculator.test_divide_returns_float) ... ok
+test_multiply (test_calculator.TestCalculator.test_multiply) ... ok
+test_subtract (test_calculator.TestCalculator.test_subtract) ... ok
+
+======================================================================
+ERROR: test_divide_by_zero_raises_value_error (test_calculator.TestCalculator.test_divide_by_zero_raises_value_error)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/mno2/Desktop/碩士/project/software_testing/CalcTDD/test_calculator.py", line 30, in test_divide_by_zero_raises_value_error
+    calc.divide(5, 0)
+    ~~~~~~~~~~~^^^^^^
+  File "/Users/mno2/Desktop/碩士/project/software_testing/CalcTDD/calculator.py", line 12, in divide
+    return a / b
+           ~~^~~
+ZeroDivisionError: division by zero
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.001s
+
+FAILED (errors=1)
