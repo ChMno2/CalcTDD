@@ -18,5 +18,11 @@ class TestCalculator(unittest.TestCase):
         self.assertEqual(calc.multiply(-4, 3), -12)
         self.assertEqual(calc.multiply(7, 0), 0)
 
+    def test_divide_returns_float(self):
+        calc = Calculator()
+        self.assertEqual(calc.divide(6, 3), 2.0)
+        self.assertEqual(calc.divide(7, 2), 3.5)  # true division, not 3
+        self.assertIsInstance(calc.divide(6, 3), float)
+
 if __name__ == "__main__":
     unittest.main()
