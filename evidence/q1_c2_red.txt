@@ -1,0 +1,17 @@
+test_add (test_calculator.TestCalculator.test_add) ... ok
+test_multiply (test_calculator.TestCalculator.test_multiply) ... ERROR
+test_subtract (test_calculator.TestCalculator.test_subtract) ... ok
+
+======================================================================
+ERROR: test_multiply (test_calculator.TestCalculator.test_multiply)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/mno2/Desktop/碩士/project/software_testing/CalcTDD/test_calculator.py", line 17, in test_multiply
+    self.assertEqual(calc.multiply(4, 3), 12)
+                     ^^^^^^^^^^^^^
+AttributeError: 'Calculator' object has no attribute 'multiply'
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.001s
+
+FAILED (errors=1)

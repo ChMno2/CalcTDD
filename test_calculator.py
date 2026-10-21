@@ -12,5 +12,11 @@ class TestCalculator(unittest.TestCase):
         self.assertEqual(calc.subtract(5, 3), 2)
         self.assertEqual(calc.subtract(3, 5), -2)  # negative results are allowed
 
+    def test_multiply(self):
+        calc = Calculator()
+        self.assertEqual(calc.multiply(4, 3), 12)
+        self.assertEqual(calc.multiply(-4, 3), -12)
+        self.assertEqual(calc.multiply(7, 0), 0)
+
 if __name__ == "__main__":
     unittest.main()
