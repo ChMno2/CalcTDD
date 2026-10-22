@@ -26,5 +26,12 @@ class TestCalculator(unittest.TestCase):
         with self.assertRaises(ValueError):
             self.calc.divide(5, 0)
 
+    def test_modulo_result_has_sign_of_divisor(self):
+        # Decision (user): Python/floor semantics, result takes the divisor's sign
+        self.assertEqual(self.calc.modulo(7, 3), 1)
+        self.assertEqual(self.calc.modulo(-7, 3), 2)
+        self.assertEqual(self.calc.modulo(7, -3), -2)
+        self.assertEqual(self.calc.modulo(-7, -3), -1)
+
 if __name__ == "__main__":
     unittest.main()

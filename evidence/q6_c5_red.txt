@@ -1,0 +1,20 @@
+test_add (test_calculator.TestCalculator.test_add) ... ok
+test_divide_by_zero_raises_value_error (test_calculator.TestCalculator.test_divide_by_zero_raises_value_error) ... ok
+test_divide_returns_float (test_calculator.TestCalculator.test_divide_returns_float) ... ok
+test_modulo_result_has_sign_of_divisor (test_calculator.TestCalculator.test_modulo_result_has_sign_of_divisor) ... ERROR
+test_multiply (test_calculator.TestCalculator.test_multiply) ... ok
+test_subtract (test_calculator.TestCalculator.test_subtract) ... ok
+
+======================================================================
+ERROR: test_modulo_result_has_sign_of_divisor (test_calculator.TestCalculator.test_modulo_result_has_sign_of_divisor)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/mno2/Desktop/碩士/project/software_testing/CalcTDD/test_calculator.py", line 31, in test_modulo_result_has_sign_of_divisor
+    self.assertEqual(self.calc.modulo(7, 3), 1)
+                     ^^^^^^^^^^^^^^^^
+AttributeError: 'Calculator' object has no attribute 'modulo'
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.000s
+
+FAILED (errors=1)
