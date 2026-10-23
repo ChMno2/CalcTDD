@@ -9,11 +9,15 @@ class Calculator:
         return a * b
 
     def divide(self, a, b):
-        if b == 0:
-            raise ValueError("Cannot divide by zero")
+        self._require_nonzero(b, "divide")
         return a / b
 
     def modulo(self, a, b):
-        if b == 0:
-            raise ValueError("Cannot take modulo by zero")
+        self._require_nonzero(b, "take modulo")
         return a % b
+
+
+    @staticmethod
+    def _require_nonzero(b, operation):
+        if b == 0:
+            raise ValueError(f"Cannot {operation} by zero")
