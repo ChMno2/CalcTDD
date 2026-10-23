@@ -18,3 +18,16 @@ badab1e 2026-10-23 14:14 Q6 cycle 7 (test, reviewed): power with non-negative ex
 05f11c9 2026-10-23 14:14 Q6 cycle 8 (test, reviewed): negative exponent returns float, power(0, -1) raises ValueError
 d1e4872 2026-10-23 14:14 Q6 cycle 8 (impl): reject zero base with negative exponent
 32fdf60 2026-10-23 14:14 Q6 cycle 8 (refactor): clarify zero-base error message
+2e414bd 2026-10-23 14:21 Add report and remaining test-run evidence
+da3804f 2026-10-23 14:23 Add all-tests-pass screenshot to report
+1fafc68 2026-10-23 14:26 Q7: Calc from tests alone, property-based and metamorphic tests
+faee542 2026-10-23 14:28 Q2: GitHub Actions CI running unit and property tests
+276cd08 2026-10-23 15:00 Q2 break 1: introduce fault in subtract (operands swapped)
+d170dd5 2026-10-23 15:01 Q2 restore 1: revert subtract fault
+b048135 2026-10-23 15:01 Q2: record CI result of break 1
+73779b8 2026-10-23 15:02 Q2: record CI result of restore 1
+5e53e4d 2026-10-23 15:02 Update calculator.py
+f08a720 2026-10-23 15:03 Fix subtract: restore a - b operand order
+30d8a13 2026-10-23 15:11 Q2: record CI results of break 2 and agent fix
+abaeaf5 2026-10-23 15:11 Q3: add static analysis (ruff) and branch coverage gate to CI
+f2a7fd4 2026-10-23 15:13 Q3: add missing trailing newlines flagged by ruff W292
