@@ -1,0 +1,9 @@
+run 39915341123 sha f08a720 conclusion=success https://github.com/ChMno2/CalcTDD/actions/runs/39915341123
+  step: Set up job                   success
+  step: Run actions/checkout@v4      success
+  step: Run actions/setup-python@v5  success
+  step: Run unit tests               success
+  step: Run property tests           success
+  step: Post Run actions/setup-python@v5 success
+  step: Post Run actions/checkout@v4 success
+  step: Complete job                 success

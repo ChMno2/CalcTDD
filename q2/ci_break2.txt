@@ -1,0 +1,9 @@
+run 39915268280 sha 5e53e4d conclusion=failure https://github.com/ChMno2/CalcTDD/actions/runs/39915268280
+  step: Set up job                   success
+  step: Run actions/checkout@v4      success
+  step: Run actions/setup-python@v5  success
+  step: Run unit tests               failure
+  step: Run property tests           skipped
+  step: Post Run actions/setup-python@v5 skipped
+  step: Post Run actions/checkout@v4 success
+  step: Complete job                 success
