@@ -12,7 +12,15 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - name: Run unit tests
-        run: python -m unittest -v
+      - name: Install verification tools
+        run: pip install coverage==7.17.0 ruff==0.17.2
+      - name: Static analysis (ruff)
+        run: ruff check --output-format=github .
+      - name: Run unit tests with branch coverage
+        run: coverage run --branch --source=calculator -m unittest -v
+      - name: Coverage report (fail under 100%)
+        run: |
+          coverage report -m --fail-under=100
+          coverage report -m --format=markdown >> "$GITHUB_STEP_SUMMARY"
       - name: Run property tests
         run: PYTHONPATH=. python q7/test_properties.py -v
