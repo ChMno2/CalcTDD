@@ -1,0 +1,5 @@
+calculator.py:27:60: W292 [*] No newline at end of file
+q7/q1_tests.py:30:20: W292 [*] No newline at end of file
+test_calculator.py:58:20: W292 [*] No newline at end of file
+Found 3 errors.
+[*] 3 fixable with `--fix`.

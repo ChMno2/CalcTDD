@@ -1,0 +1,12 @@
+run 39916150118 sha abaeaf5 conclusion=failure https://github.com/ChMno2/CalcTDD/actions/runs/39916150118
+  step: Set up job                   success
+  step: Run actions/checkout@v4      success
+  step: Run actions/setup-python@v5  success
+  step: Install verification tools   success
+  step: Static analysis (ruff)       failure
+  step: Run unit tests with branch coverage skipped
+  step: Coverage report (fail under 100%) skipped
+  step: Run property tests           skipped
+  step: Post Run actions/setup-python@v5 skipped
+  step: Post Run actions/checkout@v4 success
+  step: Complete job                 success
