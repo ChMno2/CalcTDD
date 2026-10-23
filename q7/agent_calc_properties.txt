@@ -1,0 +1,16 @@
+test_add_is_commutative (__main__.TestCalculatorProperties.test_add_is_commutative) ... ok
+test_add_zero_is_identity (__main__.TestCalculatorProperties.test_add_zero_is_identity) ... ok
+test_divide_always_returns_float (__main__.TestCalculatorProperties.test_divide_always_returns_float) ... ok
+test_divide_by_zero_always_raises_value_error (__main__.TestCalculatorProperties.test_divide_by_zero_always_raises_value_error) ... ok
+test_divide_times_divisor_recovers_dividend (__main__.TestCalculatorProperties.test_divide_times_divisor_recovers_dividend) ... ok
+test_divide_undoes_multiply (__main__.TestCalculatorProperties.test_divide_undoes_multiply) ... ok
+test_divide_undoes_multiply_beyond_2_53 (__main__.TestCalculatorProperties.test_divide_undoes_multiply_beyond_2_53) ... expected failure
+test_multiply_distributes_over_add (__main__.TestCalculatorProperties.test_multiply_distributes_over_add) ... ok
+test_multiply_is_commutative (__main__.TestCalculatorProperties.test_multiply_is_commutative) ... ok
+test_subtract_is_anticommutative (__main__.TestCalculatorProperties.test_subtract_is_anticommutative) ... ok
+test_subtract_undoes_add (__main__.TestCalculatorProperties.test_subtract_undoes_add) ... ok
+
+----------------------------------------------------------------------
+Ran 11 tests in 0.020s
+
+OK (expected failures=1)

@@ -1,0 +1,10 @@
+test_add (__main__.TestCalculator.test_add) ... ok
+test_divide_by_zero_raises_value_error (__main__.TestCalculator.test_divide_by_zero_raises_value_error) ... ok
+test_divide_returns_float (__main__.TestCalculator.test_divide_returns_float) ... ok
+test_multiply (__main__.TestCalculator.test_multiply) ... ok
+test_subtract (__main__.TestCalculator.test_subtract) ... ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.000s
+
+OK
