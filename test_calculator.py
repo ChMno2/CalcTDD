@@ -33,5 +33,10 @@ class TestCalculator(unittest.TestCase):
         self.assertEqual(self.calc.modulo(7, -3), -2)
         self.assertEqual(self.calc.modulo(-7, -3), -1)
 
+    def test_modulo_by_zero_raises_value_error(self):
+        # Decision (user): same contract as divide, ValueError instead of ZeroDivisionError
+        with self.assertRaises(ValueError):
+            self.calc.modulo(5, 0)
+
 if __name__ == "__main__":
     unittest.main()
