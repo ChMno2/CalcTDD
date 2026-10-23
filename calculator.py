@@ -17,6 +17,8 @@ class Calculator:
         return a % b
 
     def power(self, a, b):
+        if b < 0:
+            self._require_nonzero(a, "raise zero to a negative power, i.e. divide")
         return a ** b
 
     @staticmethod
