@@ -1,0 +1,296 @@
+<!doctype html><html><head><meta charset='utf-8'><title>CalcTDD Report</title><style>
+body{font-family:-apple-system,Helvetica,Arial,sans-serif;max-width:860px;margin:32px auto;padding:0 16px;color:#1a1a1a;line-height:1.5;font-size:11pt}
+h1{font-size:20pt;margin-bottom:4px}h2{font-size:15pt;margin-top:32px;border-bottom:1px solid #999}h3{font-size:12.5pt;margin-top:22px}
+.body{margin-left:1.5em}
+pre{background:#f4f4f4;border:1px solid #ddd;padding:8px;font-size:8.5pt;white-space:pre-wrap;word-break:break-word}
+code{font-size:9.5pt}table{border-collapse:collapse;margin:8px 0}td,th{border:1px solid #bbb;padding:4px 8px;font-size:10pt;vertical-align:top;text-align:left}
+.shot{border:2px dashed #c00;padding:24px;text-align:center;color:#c00}
+</style></head><body>
+<h1>CalcTDD: Test-Driven Development of Calc</h1><p>Questions 1 and 6 (required). Language: Python 3.14.7, <code>unittest</code>. Repository: <code>CalcTDD/</code>.</p>
+<h2>Question 1: TDD for subtract, multiply, divide</h2><div class='body'>
+<p>Starting point: a <code>Calculator</code> class with only <code>add</code> plus the provided <code>CalcTest.py</code> (commit <code>bce4751</code>). The provided <code>Calc.py</code> already contained all four operations, so it was not used as the starting point; doing so would leave nothing for the tests to drive. Each cycle has a red commit (test only) and a green commit (implementation).</p>
+<h3>Cycle 1: subtract</h3><p><b>Test.</b> <code>test_subtract</code> checks <code>subtract(5, 3) == 2</code> and <code>subtract(3, 5) == -2</code>, so negative results are part of the requirement.</p><p><b>Red output:</b></p><pre>======================================================================
+ERROR: test_subtract (test_calculator.TestCalculator.test_subtract)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File &quot;/Users/mno2/Desktop/碩士/project/software_testing/CalcTDD/test_calculator.py&quot;, line 12, in test_subtract
+    self.assertEqual(calc.subtract(5, 3), 2)
+                     ^^^^^^^^^^^^^
+AttributeError: &#x27;Calculator&#x27; object has no attribute &#x27;subtract&#x27;
+
+----------------------------------------------------------------------
+Ran 2 tests in 0.001s
+
+FAILED (errors=1)
+</pre><p><b>Change to pass.</b> It failed with <code>AttributeError</code> because <code>Calculator</code> had no <code>subtract</code>. Added <code>subtract(a, b)</code> returning <code>a - b</code>.</p><p><b>Green output:</b></p><pre>Ran 2 tests in 0.000s
+
+OK</pre><p><b>Refactoring.</b> None.</p>
+<h3>Cycle 2: multiply</h3><p><b>Test.</b> <code>test_multiply</code> checks a positive product, a negative operand and multiplication by zero.</p><p><b>Red output:</b></p><pre>======================================================================
+ERROR: test_multiply (test_calculator.TestCalculator.test_multiply)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File &quot;/Users/mno2/Desktop/碩士/project/software_testing/CalcTDD/test_calculator.py&quot;, line 17, in test_multiply
+    self.assertEqual(calc.multiply(4, 3), 12)
+                     ^^^^^^^^^^^^^
+AttributeError: &#x27;Calculator&#x27; object has no attribute &#x27;multiply&#x27;
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.001s
+
+FAILED (errors=1)
+</pre><p><b>Change to pass.</b> Failed with <code>AttributeError</code>. Added <code>multiply(a, b)</code> returning <code>a * b</code>.</p><p><b>Green output:</b></p><pre>Ran 3 tests in 0.000s
+
+OK</pre><p><b>Refactoring.</b> None.</p>
+<h3>Cycle 3: divide returns a float</h3><p><b>Test.</b> Before writing any division code, the integer-or-float decision was encoded: <code>divide(7, 2) == 3.5</code> rules out integer division, and <code>assertIsInstance(divide(6, 3), float)</code> requires a float even for exact quotients.</p><p><b>Red output:</b></p><pre>======================================================================
+ERROR: test_divide_returns_float (test_calculator.TestCalculator.test_divide_returns_float)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File &quot;/Users/mno2/Desktop/碩士/project/software_testing/CalcTDD/test_calculator.py&quot;, line 23, in test_divide_returns_float
+    self.assertEqual(calc.divide(6, 3), 2.0)
+                     ^^^^^^^^^^^
+AttributeError: &#x27;Calculator&#x27; object has no attribute &#x27;divide&#x27;
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.000s
+
+FAILED (errors=1)
+</pre><p><b>Change to pass.</b> Failed with <code>AttributeError</code>. Added <code>divide(a, b)</code> returning <code>a / b</code> (true division).</p><p><b>Green output:</b></p><pre>Ran 4 tests in 0.000s
+
+OK</pre><p><b>Refactoring.</b> None.</p>
+<h3>Cycle 4: divide by zero</h3><p><b>Test.</b> <code>test_divide_by_zero_raises_value_error</code> requires <code>divide(5, 0)</code> to raise <code>ValueError</code>. ValueError was chosen over Python's native <code>ZeroDivisionError</code> so that the calculator reports invalid input through one exception type; it also makes this test genuinely red, because the cycle 3 code already raised <code>ZeroDivisionError</code>.</p><p><b>Red output:</b></p><pre>======================================================================
+ERROR: test_divide_by_zero_raises_value_error (test_calculator.TestCalculator.test_divide_by_zero_raises_value_error)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File &quot;/Users/mno2/Desktop/碩士/project/software_testing/CalcTDD/test_calculator.py&quot;, line 30, in test_divide_by_zero_raises_value_error
+    calc.divide(5, 0)
+    ~~~~~~~~~~~^^^^^^
+  File &quot;/Users/mno2/Desktop/碩士/project/software_testing/CalcTDD/calculator.py&quot;, line 12, in divide
+    return a / b
+           ~~^~~
+ZeroDivisionError: division by zero
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.001s
+
+FAILED (errors=1)
+</pre><p><b>Change to pass.</b> Failed with <code>ZeroDivisionError</code>, a different exception than required. Added a <code>b == 0</code> guard that raises <code>ValueError("Cannot divide by zero")</code>.</p><p><b>Green output:</b></p><pre>Ran 5 tests in 0.000s
+
+OK</pre><p><b>Refactoring.</b> None in the production code.</p>
+<h3>Refactoring after cycle 4</h3><p>Every test created its own <code>Calculator()</code>. The fixture was moved to <code>setUp</code> (commit <code>2c8eb33</code>) and the redundant <code>result</code> variable in <code>test_add</code> was inlined. All 5 tests passed before and after.</p>
+<p>Final Q1 test run:</p><pre>test_add (test_calculator.TestCalculator.test_add) ... ok
+test_divide_by_zero_raises_value_error (test_calculator.TestCalculator.test_divide_by_zero_raises_value_error) ... ok
+test_divide_returns_float (test_calculator.TestCalculator.test_divide_returns_float) ... ok
+test_multiply (test_calculator.TestCalculator.test_multiply) ... ok
+test_subtract (test_calculator.TestCalculator.test_subtract) ... ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.000s
+
+OK
+</pre></div>
+<h2>Question 6: Agentic TDD for modulo and power</h2><div class='body'>
+<p><b>Agent.</b> Claude Code 2.1.289 (desktop app, Code tab), model Claude Opus 5.5 (<code>claude-opus-5-5</code>).</p>
+<p><b>Process.</b> For each cycle the agent wrote one test, ran the suite and showed the red output, then stopped and asked me to review the test. After my approval it committed the test alone (commit message marked <i>test, reviewed</i>), then wrote the implementation in a separate commit (<i>impl</i>), and any refactoring in a third commit.</p>
+<h3>Decisions encoded before implementation (rule c)</h3><p>Before writing any modulo or power test, the agent asked me four questions. My answers:</p>
+<table><tr><th>Question</th><th>My decision</th><th>Test that encodes it</th></tr><tr><td>Modulo with a negative operand</td><td>Result has the sign of the divisor (Python <code>%</code>): <code>modulo(-7, 3) == 2</code></td><td>cycle 5</td></tr><tr><td>Modulo by zero</td><td>Raise <code>ValueError</code></td><td>cycle 6</td></tr><tr><td><code>power(0, 0)</code></td><td>Return 1</td><td>cycle 7</td></tr><tr><td>Negative exponent</td><td>Return a float, e.g. <code>power(2, -1) == 0.5</code>; <code>power(0, -1)</code> raises <code>ValueError</code></td><td>cycle 8</td></tr></table>
+<h3>Cycle 5: modulo with negative operands</h3><p><b>Test.</b> <code>test_modulo_result_has_sign_of_divisor</code>: <code>modulo(7, 3) == 1</code>, <code>modulo(-7, 3) == 2</code>, <code>modulo(7, -3) == -2</code>, <code>modulo(-7, -3) == -1</code>. All four sign combinations are covered so that a truncating implementation (C/Java <code>%</code>, <code>math.fmod</code>) would fail.</p><p><b>Failing output before any implementation:</b></p><pre>======================================================================
+ERROR: test_modulo_result_has_sign_of_divisor (test_calculator.TestCalculator.test_modulo_result_has_sign_of_divisor)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File &quot;/Users/mno2/Desktop/碩士/project/software_testing/CalcTDD/test_calculator.py&quot;, line 31, in test_modulo_result_has_sign_of_divisor
+    self.assertEqual(self.calc.modulo(7, 3), 1)
+                     ^^^^^^^^^^^^^^^^
+AttributeError: &#x27;Calculator&#x27; object has no attribute &#x27;modulo&#x27;
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.000s
+
+FAILED (errors=1)
+</pre><p><b>My review.</b> Approved without changes. The four expected values match the decision I made beforehand (result takes the sign of the divisor).</p><p><b>Agent's change.</b> Added <code>modulo(a, b)</code> returning <code>a % b</code> (commit <code>ac51606</code>).</p><p><b>Green output:</b></p><pre>Ran 6 tests in 0.000s
+
+OK</pre><p><b>Refactoring.</b> None.</p>
+<h3>Cycle 6: modulo by zero</h3><p><b>Test.</b> <code>test_modulo_by_zero_raises_value_error</code>: <code>modulo(5, 0)</code> must raise <code>ValueError</code>, the same contract as <code>divide</code>.</p><p><b>Failing output before any implementation:</b></p><pre>======================================================================
+ERROR: test_modulo_by_zero_raises_value_error (test_calculator.TestCalculator.test_modulo_by_zero_raises_value_error)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File &quot;/Users/mno2/Desktop/碩士/project/software_testing/CalcTDD/test_calculator.py&quot;, line 39, in test_modulo_by_zero_raises_value_error
+    self.calc.modulo(5, 0)
+    ~~~~~~~~~~~~~~~~^^^^^^
+  File &quot;/Users/mno2/Desktop/碩士/project/software_testing/CalcTDD/calculator.py&quot;, line 17, in modulo
+    return a % b
+           ~~^~~
+ZeroDivisionError: division by zero
+
+----------------------------------------------------------------------
+Ran 7 tests in 0.001s
+
+FAILED (errors=1)
+</pre><p><b>My review.</b> Approved without changes. The test was red for the right reason: the cycle 5 code raised <code>ZeroDivisionError</code>, not <code>ValueError</code>.</p><p><b>Agent's change.</b> Added a zero guard to <code>modulo</code> (commit <code>f536e03</code>).</p><p><b>Green output:</b></p><pre>Ran 7 tests in 0.000s
+
+OK</pre><p><b>Refactoring.</b> <code>divide</code> and <code>modulo</code> now had identical guards, so the agent extracted <code>_require_nonzero(b, operation)</code> in a separate commit (<code>f4b0317</code>). Tests were not touched and were green before and after.</p>
+<h3>Cycle 7: power with a non-negative exponent</h3><p><b>Test.</b> <code>test_power_non_negative_exponent</code>: <code>power(2, 3) == 8</code>, <code>power(-2, 3) == -8</code>, <code>power(5, 0) == 1</code> and the decided edge case <code>power(0, 0) == 1</code>.</p><p><b>Failing output before any implementation:</b></p><pre>======================================================================
+ERROR: test_power_non_negative_exponent (test_calculator.TestCalculator.test_power_non_negative_exponent)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File &quot;/Users/mno2/Desktop/碩士/project/software_testing/CalcTDD/test_calculator.py&quot;, line 42, in test_power_non_negative_exponent
+    self.assertEqual(self.calc.power(2, 3), 8)
+                     ^^^^^^^^^^^^^^^
+AttributeError: &#x27;Calculator&#x27; object has no attribute &#x27;power&#x27;
+
+----------------------------------------------------------------------
+Ran 8 tests in 0.001s
+
+FAILED (errors=1)
+</pre><p><b>My review.</b> Approved without changes.</p><p><b>Agent's change.</b> Added <code>power(a, b)</code> returning <code>a ** b</code> (commit <code>626aa52</code>).</p><p><b>Green output:</b></p><pre>Ran 8 tests in 0.000s
+
+OK</pre><p><b>Refactoring.</b> None.</p>
+<h3>Cycle 8: power with a negative exponent</h3><p><b>Test.</b> <code>test_power_negative_exponent_returns_float</code>: <code>power(2, -1) == 0.5</code>, <code>power(2, -2) == 0.25</code>, the result is a <code>float</code>, and <code>power(0, -1)</code> raises <code>ValueError</code> because it is a division by zero.</p><p><b>Failing output before any implementation:</b></p><pre>======================================================================
+ERROR: test_power_negative_exponent_returns_float (test_calculator.TestCalculator.test_power_negative_exponent_returns_float)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File &quot;/Users/mno2/Desktop/碩士/project/software_testing/CalcTDD/test_calculator.py&quot;, line 55, in test_power_negative_exponent_returns_float
+    self.calc.power(0, -1)
+    ~~~~~~~~~~~~~~~^^^^^^^
+  File &quot;/Users/mno2/Desktop/碩士/project/software_testing/CalcTDD/calculator.py&quot;, line 20, in power
+    return a ** b
+           ~~^^~~
+ZeroDivisionError: zero to a negative power
+
+----------------------------------------------------------------------
+Ran 9 tests in 0.001s
+
+FAILED (errors=1)
+</pre><p><b>My review.</b> Approved without changes. The first three assertions already passed with <code>a ** b</code>; the test was red only because of <code>power(0, -1)</code>, which raised <code>ZeroDivisionError</code>. I accepted this because the float result is still pinned down by the test and cannot regress silently.</p><p><b>Agent's change.</b> Added a guard: when <code>b &lt; 0</code>, call <code>_require_nonzero(a, ...)</code> (commit <code>d1e4872</code>).</p><p><b>Green output:</b></p><pre>Ran 9 tests in 0.000s
+
+OK</pre><p><b>Refactoring.</b> The error message read awkwardly, so the agent reworded the message string only (commit <code>32fdf60</code>). Tests unchanged, green before and after.</p>
+<h3>Rule compliance</h3>
+<p><b>Rule breaks by the agent: none observed.</b> In all four cycles the test commit precedes the implementation commit in the git log, every red run was shown before implementation, and no committed test was edited or deleted afterwards (<code>git log -p -- test_calculator.py</code> after <code>f7ddfd5</code> shows additions only).</p>
+<p><b>Decisions the agent made without asking me:</b></p><ul><li>The <code>power(0, -1)</code> behavior: I chose it, but the option text I chose from ("return a float; power(0, -1) raises ValueError") was written by the agent, so the agent bundled this sub-decision into the negative-exponent option.</li><li>Exception messages ("Cannot take modulo by zero", etc.). Not tested.</li><li>Whether <code>power</code> returns an <code>int</code> for non-negative integer exponents. <code>assertEqual(power(2, 3), 8)</code> would also accept <code>8.0</code>, so this is not pinned down by any test.</li><li>Behaviour for float operands of <code>modulo</code> and <code>power</code>. Not tested.</li><li>Adding the two refactoring commits (<code>f4b0317</code>, <code>32fdf60</code>). These touched production code only.</li></ul>
+<p>Also for transparency: Question 1 was carried out by the same agent in the same session. Its decisions there (float division, <code>ValueError</code> on division by zero) were made by the agent without asking me; I reviewed and kept them.</p></div>
+<h2>Final test suite</h2><div class='body'><pre>import unittest
+from calculator import Calculator  # The class we are going to implement
+
+class TestCalculator(unittest.TestCase):
+    def setUp(self):
+        self.calc = Calculator()
+
+    def test_add(self):
+        self.assertEqual(self.calc.add(2, 3), 5)  # Expect 2 + 3 = 5
+
+    def test_subtract(self):
+        self.assertEqual(self.calc.subtract(5, 3), 2)
+        self.assertEqual(self.calc.subtract(3, 5), -2)  # negative results are allowed
+
+    def test_multiply(self):
+        self.assertEqual(self.calc.multiply(4, 3), 12)
+        self.assertEqual(self.calc.multiply(-4, 3), -12)
+        self.assertEqual(self.calc.multiply(7, 0), 0)
+
+    def test_divide_returns_float(self):
+        self.assertEqual(self.calc.divide(6, 3), 2.0)
+        self.assertEqual(self.calc.divide(7, 2), 3.5)  # true division, not 3
+        self.assertIsInstance(self.calc.divide(6, 3), float)
+
+    def test_divide_by_zero_raises_value_error(self):
+        with self.assertRaises(ValueError):
+            self.calc.divide(5, 0)
+
+    def test_modulo_result_has_sign_of_divisor(self):
+        # Decision (user): Python/floor semantics, result takes the divisor&#x27;s sign
+        self.assertEqual(self.calc.modulo(7, 3), 1)
+        self.assertEqual(self.calc.modulo(-7, 3), 2)
+        self.assertEqual(self.calc.modulo(7, -3), -2)
+        self.assertEqual(self.calc.modulo(-7, -3), -1)
+
+    def test_modulo_by_zero_raises_value_error(self):
+        # Decision (user): same contract as divide, ValueError instead of ZeroDivisionError
+        with self.assertRaises(ValueError):
+            self.calc.modulo(5, 0)
+
+    def test_power_non_negative_exponent(self):
+        self.assertEqual(self.calc.power(2, 3), 8)
+        self.assertEqual(self.calc.power(-2, 3), -8)
+        self.assertEqual(self.calc.power(5, 0), 1)
+        # Decision (user): power(0, 0) is 1, following programming-language convention
+        self.assertEqual(self.calc.power(0, 0), 1)
+
+    def test_power_negative_exponent_returns_float(self):
+        # Decision (user): negative exponent gives a float reciprocal
+        self.assertEqual(self.calc.power(2, -1), 0.5)
+        self.assertEqual(self.calc.power(2, -2), 0.25)
+        self.assertIsInstance(self.calc.power(2, -1), float)
+        # 0 to a negative power is 1/0, so it follows the ValueError contract of divide
+        with self.assertRaises(ValueError):
+            self.calc.power(0, -1)
+
+if __name__ == &quot;__main__&quot;:
+    unittest.main()</pre></div>
+<h2>Final Calc</h2><div class='body'><pre>class Calculator:
+    def add(self, a, b):
+        return a + b
+
+    def subtract(self, a, b):
+        return a - b
+
+    def multiply(self, a, b):
+        return a * b
+
+    def divide(self, a, b):
+        self._require_nonzero(b, &quot;divide&quot;)
+        return a / b
+
+    def modulo(self, a, b):
+        self._require_nonzero(b, &quot;take modulo&quot;)
+        return a % b
+
+    def power(self, a, b):
+        if b &lt; 0:
+            self._require_nonzero(a, &quot;raise zero to a negative power, which would divide&quot;)
+        return a ** b
+
+    @staticmethod
+    def _require_nonzero(b, operation):
+        if b == 0:
+            raise ValueError(f&quot;Cannot {operation} by zero&quot;)</pre></div>
+<h2>Git log</h2><div class='body'><pre>bce4751 2026-10-22 00:25 Q1 baseline: Calculator with add() and its test
+d9ef353 2026-10-22 00:26 Q1 cycle 1 (red): test subtract
+6546dd7 2026-10-22 00:26 Q1 cycle 1 (green): implement subtract
+66934be 2026-10-22 00:26 Q1 cycle 2 (red): test multiply
+31d4bef 2026-10-22 00:26 Q1 cycle 2 (green): implement multiply
+cdcc48d 2026-10-22 00:26 Q1 cycle 3 (red): test divide returns float
+165782b 2026-10-22 00:26 Q1 cycle 3 (green): implement divide with true division
+812cca3 2026-10-22 00:26 Q1 cycle 4 (red): test divide by zero raises ValueError
+1c48190 2026-10-22 00:26 Q1 cycle 4 (green): guard divide against zero
+2c8eb33 2026-10-22 00:26 Q1 refactor: share Calculator fixture via setUp
+f7ddfd5 2026-10-22 15:02 Q6 cycle 5 (test, reviewed): modulo result takes sign of divisor
+ac51606 2026-10-22 15:02 Q6 cycle 5 (impl): modulo via Python %
+318a5ff 2026-10-23 13:32 Q6 cycle 6 (test, reviewed): modulo by zero raises ValueError
+f536e03 2026-10-23 13:32 Q6 cycle 6 (impl): guard modulo against zero
+f4b0317 2026-10-23 13:32 Q6 cycle 6 (refactor): extract shared zero-divisor guard
+badab1e 2026-10-23 14:14 Q6 cycle 7 (test, reviewed): power with non-negative exponent, power(0, 0) == 1
+626aa52 2026-10-23 14:14 Q6 cycle 7 (impl): power via Python **
+05f11c9 2026-10-23 14:14 Q6 cycle 8 (test, reviewed): negative exponent returns float, power(0, -1) raises ValueError
+d1e4872 2026-10-23 14:14 Q6 cycle 8 (impl): reject zero base with negative exponent
+32fdf60 2026-10-23 14:14 Q6 cycle 8 (refactor): clarify zero-base error message
+</pre></div>
+<h2>All tests pass</h2><div class='body'><pre>test_add (test_calculator.TestCalculator.test_add) ... ok
+test_divide_by_zero_raises_value_error (test_calculator.TestCalculator.test_divide_by_zero_raises_value_error) ... ok
+test_divide_returns_float (test_calculator.TestCalculator.test_divide_returns_float) ... ok
+test_modulo_by_zero_raises_value_error (test_calculator.TestCalculator.test_modulo_by_zero_raises_value_error) ... ok
+test_modulo_result_has_sign_of_divisor (test_calculator.TestCalculator.test_modulo_result_has_sign_of_divisor) ... ok
+test_multiply (test_calculator.TestCalculator.test_multiply) ... ok
+test_power_negative_exponent_returns_float (test_calculator.TestCalculator.test_power_negative_exponent_returns_float) ... ok
+test_power_non_negative_exponent (test_calculator.TestCalculator.test_power_non_negative_exponent) ... ok
+test_subtract (test_calculator.TestCalculator.test_subtract) ... ok
+
+----------------------------------------------------------------------
+Ran 9 tests in 0.000s
+
+OK
+</pre><div class='shot'>Insert the terminal screenshot of <code>python3 -m unittest -v</code> here.</div></div>
+<h2>Appendix: AI usage log</h2><div class='body'>
+<p><b>Tool:</b> Claude Code 2.1.289, Claude desktop app (Code tab). <b>Model:</b> Claude Opus 5.5 (<code>claude-opus-5-5</code>). <b>Used for:</b> Questions 1 and 6.</p>
+<p><b>Prompts, verbatim.</b> The session started with the six attached files and this prompt:</p><pre>請幫我完成這份作業，我已經在chrome登入了
+請你幫我把檔案載下來並且開始實作
+https://e3p.nycu.edu.tw/mod/assign/view.php?id=245389</pre><p>All later inputs were my answers to the agent's multiple-choice questions:</p><table><tr><th>Agent question</th><th>My answer</th></tr><tr><td>modulo 遇到負數運算元時，結果要採哪種語意？</td><td>跟除數同號 (Python %)</td></tr><tr><td>modulo 除以零要怎麼處理？</td><td>丟 ValueError</td></tr><tr><td>power(0, 0) 要回傳什麼？</td><td>回傳 1</td></tr><tr><td>power 遇到負指數要回傳什麼？</td><td>回傳 float</td></tr><tr><td>Cycle 5 to 8 test reviews (four questions)</td><td>通過，commit (all four)</td></tr></table><p><b>Full agent responses:</b> see the exported session transcript attached with this report.</p></div>
+</body></html>

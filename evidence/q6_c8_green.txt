@@ -1,0 +1,14 @@
+test_add (test_calculator.TestCalculator.test_add) ... ok
+test_divide_by_zero_raises_value_error (test_calculator.TestCalculator.test_divide_by_zero_raises_value_error) ... ok
+test_divide_returns_float (test_calculator.TestCalculator.test_divide_returns_float) ... ok
+test_modulo_by_zero_raises_value_error (test_calculator.TestCalculator.test_modulo_by_zero_raises_value_error) ... ok
+test_modulo_result_has_sign_of_divisor (test_calculator.TestCalculator.test_modulo_result_has_sign_of_divisor) ... ok
+test_multiply (test_calculator.TestCalculator.test_multiply) ... ok
+test_power_negative_exponent_returns_float (test_calculator.TestCalculator.test_power_negative_exponent_returns_float) ... ok
+test_power_non_negative_exponent (test_calculator.TestCalculator.test_power_non_negative_exponent) ... ok
+test_subtract (test_calculator.TestCalculator.test_subtract) ... ok
+
+----------------------------------------------------------------------
+Ran 9 tests in 0.000s
+
+OK

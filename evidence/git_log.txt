@@ -1,0 +1,20 @@
+bce4751 2026-10-22 00:25 Q1 baseline: Calculator with add() and its test
+d9ef353 2026-10-22 00:26 Q1 cycle 1 (red): test subtract
+6546dd7 2026-10-22 00:26 Q1 cycle 1 (green): implement subtract
+66934be 2026-10-22 00:26 Q1 cycle 2 (red): test multiply
+31d4bef 2026-10-22 00:26 Q1 cycle 2 (green): implement multiply
+cdcc48d 2026-10-22 00:26 Q1 cycle 3 (red): test divide returns float
+165782b 2026-10-22 00:26 Q1 cycle 3 (green): implement divide with true division
+812cca3 2026-10-22 00:26 Q1 cycle 4 (red): test divide by zero raises ValueError
+1c48190 2026-10-22 00:26 Q1 cycle 4 (green): guard divide against zero
+2c8eb33 2026-10-22 00:26 Q1 refactor: share Calculator fixture via setUp
+f7ddfd5 2026-10-22 15:02 Q6 cycle 5 (test, reviewed): modulo result takes sign of divisor
+ac51606 2026-10-22 15:02 Q6 cycle 5 (impl): modulo via Python %
+318a5ff 2026-10-23 13:32 Q6 cycle 6 (test, reviewed): modulo by zero raises ValueError
+f536e03 2026-10-23 13:32 Q6 cycle 6 (impl): guard modulo against zero
+f4b0317 2026-10-23 13:32 Q6 cycle 6 (refactor): extract shared zero-divisor guard
+badab1e 2026-10-23 14:14 Q6 cycle 7 (test, reviewed): power with non-negative exponent, power(0, 0) == 1
+626aa52 2026-10-23 14:14 Q6 cycle 7 (impl): power via Python **
+05f11c9 2026-10-23 14:14 Q6 cycle 8 (test, reviewed): negative exponent returns float, power(0, -1) raises ValueError
+d1e4872 2026-10-23 14:14 Q6 cycle 8 (impl): reject zero base with negative exponent
+32fdf60 2026-10-23 14:14 Q6 cycle 8 (refactor): clarify zero-base error message
