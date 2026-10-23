@@ -38,5 +38,12 @@ class TestCalculator(unittest.TestCase):
         with self.assertRaises(ValueError):
             self.calc.modulo(5, 0)
 
+    def test_power_non_negative_exponent(self):
+        self.assertEqual(self.calc.power(2, 3), 8)
+        self.assertEqual(self.calc.power(-2, 3), -8)
+        self.assertEqual(self.calc.power(5, 0), 1)
+        # Decision (user): power(0, 0) is 1, following programming-language convention
+        self.assertEqual(self.calc.power(0, 0), 1)
+
 if __name__ == "__main__":
     unittest.main()
