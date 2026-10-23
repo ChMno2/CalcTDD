@@ -45,5 +45,14 @@ class TestCalculator(unittest.TestCase):
         # Decision (user): power(0, 0) is 1, following programming-language convention
         self.assertEqual(self.calc.power(0, 0), 1)
 
+    def test_power_negative_exponent_returns_float(self):
+        # Decision (user): negative exponent gives a float reciprocal
+        self.assertEqual(self.calc.power(2, -1), 0.5)
+        self.assertEqual(self.calc.power(2, -2), 0.25)
+        self.assertIsInstance(self.calc.power(2, -1), float)
+        # 0 to a negative power is 1/0, so it follows the ValueError contract of divide
+        with self.assertRaises(ValueError):
+            self.calc.power(0, -1)
+
 if __name__ == "__main__":
     unittest.main()
