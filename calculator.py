@@ -16,6 +16,8 @@ class Calculator:
         self._require_nonzero(b, "take modulo")
         return a % b
 
+    def power(self, a, b):
+        return a ** b
 
     @staticmethod
     def _require_nonzero(b, operation):
